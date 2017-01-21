@@ -87,7 +87,7 @@ Another way to initiate the particles' positions is to load a previous state fro
 We're going to use all three methods.
 \item {\bf{Initial Velocity}}
 
-The particles' initial velocities follow a random (gaussian) distribution related to the initial temperature.
+In our case, the particles' initial velocities follow a random (gaussian) distribution related to the initial temperature of the system.
 \item {\bf{Potential}}
 In order to make our particles act realistically, we apply an interatomic potential. 
 This potential dictates how the particles behave. A potential creates forces between the particles, 
@@ -142,8 +142,9 @@ After your program has finished running, dump/sample the data for later simulati
 \section*{Structure of Code}
 I have chosen to use LAMMPS as my code language.
 LAMMPS is a classical molecular dynamics code, and an acronym for Large-scale Atomic/Molecular Massively Parallel Simulator.\footnote{http://lammps.sandia.gov/}
-This section aims to give you a basic intuition of how LAMMPS algorithms are structured.
-For a random simulation, the structure of a program file will typically look like this: 
+This section aims to give you a basic intuition of how LAMMPS algorithms are written.
+For a random simulation, the structure of a program file will typically look like this:
+
 \begin{lstlisting}[language=C++]
 # ----------------- Init Section -----------------
 
@@ -190,25 +191,46 @@ The ``write\textunderscore data'' command, saves the final state inside a datafi
 
 
 \chapter{The Problem}
-The goal of this project is to analyze the behaviour of water molecules floating around in nanoporous SiO$_2$. 
-Water, as any other fluid, is in constant motion. This inner fluidic motion is known as self diffusion. Our goal is to determine wether
-or not water's self diffusion changes as a result of changes to its surroundings. We are going to look at 2 types of nanopores. Spherical and cylindrical.
-The pores will be placed inside of silicate, or SiO$_2$, and filled with water. What you know as glass, crystall, quarts and many other materials are all made up of silicate.
+We want try to determine wether or not water's self diffusion will change as a result of changes to the shape of its nanoporous surroundings.
+Liquid water, as any other fluid, experiences internal motion. Inside the fluid, the water molecules are wobbling and crashing together, causing
+transportation. This transportation of particles is called self diffusion. Water's self diffusion depends on many things, such as pressure, temperature and boundary conditions.
 
-Our model of nanopores starts off with a block of betacristobalite, see figure \ref{fig:beta}.
+We want to inspect if the self diffusion of water behaves differently
+when encapsuled in different geometries of SiO$_2$ nanopores. This is plausible due to water being polar and interacts therefore with polar materials such as silicat. 
+Because water inside silicat nanopores is so tightly encapsulated, the electromagnetic interactions between the water 
+molecules and the silicat might cause noticeable changes to the water's self diffusion.
+This chapter will further discuss the nature of our hypothesis and how we aim to test it.
+
+\section{Diffusion}
+Diffusion is described as the netto movement of fluidic particles. A high diffusion coefficient translates to a lot of random motion in your system.
+In order to measure the self diffusion of our water we have applied two methods: MSD, the \emph{mean squared displacement} method and VACF, the \emph{velocity autocorrelation function} method.
+These methods will be discussed further under the ``Methods'' chapter.
+
+As stated earlier, diffusion is a function of both temperature and pressure. Overall, high temperature causes both transport of particles and violent fluctuations.
+Transportation and vibrations are then taken into account when measuring the diffusion of the system. Also local pressure changes set particles in motion.
+
+The potential is useful to take into account while discussing the diffusion of a fluid. The potential of a substance decides/describes the substance attributes. These could be attributes such as viscosity, polarity, etc.
+Polarity is something we find in water, where there is a local imbalance of the electromagnetic field. This causes water to stick to certain materials, e.g. glass surfaces. The point of this project is to see if
+the potential conjures up forces that makes water behave differently than normal under new circumstances. The circumstances being that the water is inside of nanoporous silicat.
+
+\section{Nanopores}
+We will primarily look at 2 types of nanopores. Spherical and cylindrical.
+It is within these pores that the water will reside.
+Not only will we compare the diffusion of water within different geometries, we will also change the volumes
+
+Glass, crystall, quarts and many other materials are solids made up of silicate networks.
+The silicate network we initiatially work with is called beta cristobalie, or b-cristobalite, see figure \ref{fig:beta}.
 \begin{figure}[h] 
 
- \includegraphics[scale=0.15]{beta}\centering
- \caption{\label{fig:beta}Silicat in the form of $\beta$ cristobalite. }
+ \includegraphics[scale=0.15]{beta.png}\centering
+ \caption{\label{fig:beta}Silicat in the form of $\beta$ cristobalite. Each silicon atom (white) is connected to 4 oxygen atoms (red).}
  
 \end{figure}
-
-chn
 
 \begin{figure}[h] 
 
  \includegraphics[scale=0.35]{block}\centering
- \caption{\label{fig:pores}Block of Silicat in the form of betacristobalite.}
+ \caption{\label{fig:pores}Block of b-cristobalite. Written in lammps, .}
  
 \end{figure}
 
