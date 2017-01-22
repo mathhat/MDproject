@@ -213,24 +213,34 @@ The potential is useful to take into account while discussing the diffusion of a
 Polarity is something we find in water, where there is a local imbalance of the electromagnetic field. This causes water to stick to certain materials, e.g. glass surfaces. The point of this project is to see if
 the potential conjures up forces that makes water behave differently than normal under new circumstances. The circumstances being that the water is inside of nanoporous silicat.
 
-\section{Nanopores}
-We will primarily look at 2 types of nanopores. Spherical and cylindrical.
+\section{Nanopores and Silicat}
+We will simulate 2 types of nanopores. Spherical and cylindrical. I don't think nanopores tend not to look like perfect spheres, 
+but the idea is to see if there is a diffusion change based on the shape of the nanopore.
 It is within these pores that the water will reside.
-Not only will we compare the diffusion of water within different geometries, we will also change the volumes
+Not only will we compare the diffusion of water within different shapes of pores, we will also change the volume of the pores in order to find additional diffusional patterns.
 
-Glass, crystall, quarts and many other materials are solids made up of silicate networks.
-The silicate network we initiatially work with is called beta cristobalie, or b-cristobalite, see figure \ref{fig:beta}.
+Glass, crystall, quarts and many other materials are solids made up of silicat networks.
+The silicat network we initiatially work with is called beta cristobalite or $\beta$-cristobalite, see figure \ref{fig:beta}.
 \begin{figure}[h] 
 
  \includegraphics[scale=0.15]{beta.png}\centering
- \caption{\label{fig:beta}Silicat in the form of $\beta$ cristobalite. Each silicon atom (white) is connected to 4 oxygen atoms (red).}
+ \caption{\label{fig:beta}Silicat in the form of $\beta$-cristobalite. Each silicon atom (white) is connected to 4 oxygen atoms (red).}
  
 \end{figure}
+Figure \ref{fig:beta} does not satisfy our criteria for a simulated
+
+
+The reason why I emphasize that this is our initial silicate network is because we are going to melt it.
+We want an amorphous and chaotic structure that resembles the silicat inside the Earth's crust and we can only get this by melting the crystal structure.
+After melting the crystal, we quickly cool it so that the structure remains amorphous.
+
+
+
 
 \begin{figure}[h] 
 
  \includegraphics[scale=0.35]{block}\centering
- \caption{\label{fig:pores}Block of b-cristobalite. Written in lammps, .}
+ \caption{\label{fig:pores}Block of $\beta$-cristobalite. Written in lammps, .}
  
 \end{figure}
 
